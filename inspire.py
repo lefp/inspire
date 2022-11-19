@@ -3,8 +3,23 @@
 import subprocess as sp
 from requests import get
 from time import sleep
+from argparse import ArgumentParser
 
-UPDATE_INTERVAL_SECONDS = 30
+def parse_args():
+    parser = ArgumentParser(
+        description='display an InspiroBot slideshow',
+        epilog='Don\'t use very small update intervals (e.g. 1s); '+ 
+               'the script requests an image from `inspirobot.me` on every update, '+
+               'and I don\'t know how their servers will react.',
+    )
+    parser.add_argument('--interval', '-i',
+        help='image update interval (in seconds)',
+        type=int,
+        action='store',
+        dest='update_interval_seconds',
+        default=30,
+    )
+    return parser.parse_args()
 
 # tries requests.get(url) over and over till it works
 def get_url_until_success(url: str):
@@ -30,10 +45,10 @@ class UrlImageViewer:
         self.proc = new_proc
 
 if __name__ == "__main__":
-    proc = None
+    args = parse_args()
 
     viewer = UrlImageViewer()
     while True:
         im_url = get_url_until_success("https://inspirobot.me/api?generate=true").content.decode("utf-8")
         viewer.update(im_url)
-        sleep(UPDATE_INTERVAL_SECONDS)
+        sleep(args.update_interval_seconds)
