@@ -21,7 +21,7 @@ I tested on a laptop, but it would probably work on a RaspberryPi.
 ## Debugging
 
 Every time the script updates the image, it:
-1. fetches a new image from inspirobot.me
+1. fetches a new image from [InspiroBot](https://inspirobot.me)
 2. displays it in a new `feh` window
 3. kills the old `feh` window
 
