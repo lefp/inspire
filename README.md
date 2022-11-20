@@ -27,4 +27,4 @@ Every time the script updates the image, it:
 
 If it fails to fetch an image (e.g. due to a lost internet connection), it just keeps the previous image on screen until it succeeds.
 
-If there you can see the rest of your desktop show up during a transition, the new window probably took too long to load (so the old window died before the new one was up). In this case, you can modify the script to wait longer before killing the old window.
+If you see the rest of your desktop briefly show up during a transition, the new window probably took too long to load (so the old window died before the new one was up). In this case, you can modify the script to wait longer before killing the old window.
